@@ -12,10 +12,10 @@ const fetchBatches = batches => ({
     payload: batches
 })
   
-// const createBatch = batch => ({
-//     type: ADD_BATCH,
-//     payload: batch
-// })
+const createBatch = batch => ({
+    type: ADD_BATCH,
+    payload: batch
+})
 
 export const getBatches = () => (dispatch, getState) => {
     const state = getState()
@@ -28,5 +28,18 @@ export const getBatches = () => (dispatch, getState) => {
       .get(`${baseUrl}/batches`)
       .set('Authorization', `Bearer ${jwt}`)
       .then(result => dispatch(fetchBatches(result.body)))
+      .catch(err => console.error(err))
+}
+
+export const addBatch = () => (dispatch, getState) => {
+    const state = getState()
+    const jwt = state.currentUser.jwt
+  
+    if (isExpired(jwt)) return dispatch(logout())
+  
+    request
+      .post(`${baseUrl}/batches`)
+      .set('Authorization', `Bearer ${jwt}`)
+      .then(result => dispatch(createBatch(result.body)))
       .catch(err => console.error(err))
 }

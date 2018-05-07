@@ -2,7 +2,7 @@
 import React, {PureComponent} from 'react'
 import {connect} from 'react-redux'
 import {Redirect} from 'react-router-dom'
-import {getBatches} from '../../actions/batches'
+import {getBatches, addBatch} from '../../actions/batches'
 import {getUsers} from '../../actions/users'
 
 // Styling
@@ -10,6 +10,7 @@ import Paper from 'material-ui/Paper'
 import Card, {CardActions, CardHeader, CardContent} from 'material-ui/Card'
 import Button from 'material-ui/Button'
 import './BatchesList.css'
+import { Typography } from 'material-ui';
 
 class BatchesList extends PureComponent {
 
@@ -27,6 +28,8 @@ class BatchesList extends PureComponent {
         <Card key={batch.id} className="batch-card">
             <CardContent>
                 <CardHeader title={`Batch # ${batch.id}`}/>
+                <Typography>Start date: {batch.startDate}</Typography>
+                <Typography>End date: {batch.endDate}</Typography>
             </CardContent>
                 
             <CardActions>
@@ -75,4 +78,4 @@ const mapStateToProps = state => ({
     null : Object.values(state.batches).sort((a, b) => a.id - b.id)
 })
 
-export default connect(mapStateToProps, {getBatches, getUsers})(BatchesList)
+export default connect(mapStateToProps, {getBatches, getUsers, addBatch})(BatchesList)
