@@ -1,6 +1,6 @@
 //src/batches/entities.ts
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm'
-import {IsDateString} from "class-validator"
+import {IsDateString} from "class-validator";
 import { BaseEntity } from 'typeorm/repository/BaseEntity'
 
 @Entity()
