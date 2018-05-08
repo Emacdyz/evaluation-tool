@@ -17,7 +17,7 @@ const postStudent = student => ({
     payload: student
 })
 
-export const getStudents = (students) => (dispatch, getState) => {
+export const getStudents = () => (dispatch, getState) => {
     const state = getState()
     if (!state.currentUser) return null
     const jwt = state.currentUser.jwt
@@ -27,7 +27,7 @@ export const getStudents = (students) => (dispatch, getState) => {
     request
       .get(`${baseUrl}/students`)
       .set('Authorization', `Bearer ${jwt}`)
-      .then(result => dispatch(fetchStudents(students)))
+      .then(result => dispatch(fetchStudents(result.body)))
       .catch(err => console.error(err))
 }
 
