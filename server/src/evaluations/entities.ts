@@ -1,6 +1,7 @@
 //src/evaluations/entities.ts
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm'
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm'
 import { BaseEntity } from 'typeorm/repository/BaseEntity'
+import { Students } from '../students/entities';
 
 @Entity()
 export class Evaluations extends BaseEntity {
@@ -8,20 +9,17 @@ export class Evaluations extends BaseEntity {
     @PrimaryGeneratedColumn()
     id?: number
 
-    @Column('int', {nullable: true})
-    studentId: number
-
     @Column('text', {nullable: false})
-    lastColor: string
+    color: string
 
     @Column('date', {nullable: false})
-    date: string
+    date: Date
 
     @Column('text', {nullable: false})
     remarks: string
 
-    // @Column('json', {nullable: false})
-    // colorList: string
+    // @ManyToOne(() => Students, s => s.evaluations, {onDelete: 'CASCADE'})
+    // student: Students
 
     @Column('bool', {default: false, nullable: false})
     questionAsked: boolean
