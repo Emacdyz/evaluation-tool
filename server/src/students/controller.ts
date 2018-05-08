@@ -1,21 +1,18 @@
 //src/students/controller.ts
-import { JsonController, Get, HttpCode, Param, NotFoundError, Post, Body, Delete, Patch } from 'routing-controllers'
+import { JsonController, Get, HttpCode, Param, NotFoundError, Post, Body, Delete, Patch, Authorized } from 'routing-controllers'
 import {Students} from './entities'
 
 @JsonController()
 export default class StudentController {
 
-    // @Authorized()
-    @Get('/batches/students/:batchId')
-    async getStudentsByBatch(
-        @Param('batchId') batchId: number
-    ) {
-        const batches = await Students.findOneById(batchId)
-        return Students.find(batches)
+    @Authorized()
+    @Get('/students')
+    getStudents() {
+        return Students.find()
     }
     //by batchNb ??
 
-    // @Authorized()
+    @Authorized()
     @Get('/students/:id([0-9]+)')
     async getStudentById(
         @Param('id') studentId: number
@@ -27,7 +24,7 @@ export default class StudentController {
         return student
     }
 
-     // @Authorized()
+    @Authorized()
     @Post('/students')
     @HttpCode(201)
     async addStudent(
@@ -38,7 +35,7 @@ export default class StudentController {
         return student
     }
 
-    // @Authorized()
+    @Authorized()
     @Patch('/students/:id([0-9]+)')
     async updateStudent(
         @Body() update: Partial <Students>,
@@ -59,7 +56,7 @@ export default class StudentController {
         return student
     }
 
-    // @Authorized()
+    @Authorized()
     @Delete('/students/:id([0-9]+)')
     async deleteStudent(
         @Param('id') id: number
