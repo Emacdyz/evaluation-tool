@@ -1,4 +1,4 @@
-//src/actions/Batches.jsx
+//src/actions/batches.jsx
 import * as request from 'superagent'
 import {baseUrl} from '../constants'
 import {logout} from './users'
@@ -31,7 +31,8 @@ export const getBatches = () => (dispatch, getState) => {
       .catch(err => console.error(err))
 }
 
-export const addBatch = () => (dispatch, getState) => {
+export const addBatch = (data) => (dispatch, getState) => {
+    console.log(data)
     const state = getState()
     const jwt = state.currentUser.jwt
   
@@ -40,6 +41,7 @@ export const addBatch = () => (dispatch, getState) => {
     request
       .post(`${baseUrl}/batches`)
       .set('Authorization', `Bearer ${jwt}`)
-      .then(result => dispatch(createBatch(result.body)))
+      .send(data)
+      .then(result => dispatch(createBatch(data)))
       .catch(err => console.error(err))
 }
