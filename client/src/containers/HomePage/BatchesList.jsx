@@ -37,7 +37,7 @@ class BatchesList extends PureComponent {
                 <Button
                 size="small"
                 variant="raised"
-                onClick={() => history.push(`/batches/${batch.id}`)}
+                onClick={() => history.push(`/batches/${batch.batchNb}`)}
                 > EDIT 
                 </Button> 
                 

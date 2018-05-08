@@ -1,4 +1,4 @@
-//src/reducers/batches.js
+//src/reducers/fetchbatches.js
 import { GET_BATCHES} from '../actions/batches'
 
 export default (state = null, {type, payload}) => {

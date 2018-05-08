@@ -1,0 +1,10 @@
+.outer-paper {
+    width: 90%;
+    padding-bottom: 20px;
+    margin: 100px auto;
+    padding: 20px
+}
+.outer-paper .topnav {
+    display: flex;
+    justify-content: space-between;
+}
