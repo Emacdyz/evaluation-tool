@@ -7,10 +7,13 @@ export class Batches extends BaseEntity {
 
     @PrimaryGeneratedColumn()
     id?: number
+
+    @Column('int', {nullable: false})
+    batchNb: number
     
-    @Column('date', {nullable: false})
+    @Column('text', {nullable: false})
     startDate: string 
     
-    @Column('date', {nullable: false})
+    @Column('text', {nullable: false})
     endDate: string
 }
