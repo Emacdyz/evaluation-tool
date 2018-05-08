@@ -31,8 +31,8 @@ export const getStudents = (students) => (dispatch, getState) => {
       .catch(err => console.error(err))
 }
 
-export const addStudent = (newStudent) => (dispatch, getState) => {
-    console.log(newStudent)
+export const addStudent = (student) => (dispatch, getState) => {
+    console.log(student)
     const state = getState()
     const jwt = state.currentUser.jwt
   
@@ -41,7 +41,7 @@ export const addStudent = (newStudent) => (dispatch, getState) => {
     request
       .post(`${baseUrl}/students`)
       .set('Authorization', `Bearer ${jwt}`)
-      .send(newStudent)
-      .then(result => dispatch(postStudent(newStudent)))
+      .send(student)
+      .then(result => dispatch(postStudent(student)))
       .catch(err => console.error(err))
 }

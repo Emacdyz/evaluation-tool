@@ -1,7 +1,8 @@
 //src/containers/ClassView/StudentList.jsx
 import React, {PureComponent} from 'react'
 import {connect} from 'react-redux'
-import { getStudents } from '../../actions/student';
+import { getStudents } from '../../actions/student'
+import CreateStudentCard from './AddStudent'
 
 //Styling
 import Paper from 'material-ui/Paper'
@@ -51,6 +52,7 @@ class StudentList extends PureComponent {
     render () {
         const batchNb = (window.location.href).split('/').pop()
         const {history, students} = this.props
+        console.log(students)
 
         return (
             <Paper className="outer-paper">
@@ -75,7 +77,7 @@ class StudentList extends PureComponent {
                 <h2>Batch # {batchNb} </h2>
             </div>
 
-            {/* <AddStudent/> */}
+            <CreateStudentCard/>
 
             {students.map(student => this.renderStudentCard(student))}
 
@@ -86,8 +88,7 @@ class StudentList extends PureComponent {
 }
 
 const mapStateToProps = state => ({
-    students: state.fetchStudents === null ?
-    null : Object.values(state.fetchStudents).sort((a, b) => a.student.id - b.student.id)
+    students: state.fetchStudents 
 })
 
 export default connect(mapStateToProps, {getStudents})(StudentList)

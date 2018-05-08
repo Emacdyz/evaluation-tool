@@ -8,3 +8,33 @@
     display: flex;
     justify-content: space-between;
 }
+.outer-paper .add-student {
+    background-color: #FF5252;
+    letter-spacing: 1.2px;
+    margin: 20px
+}
+.outer-paper .add-student:hover {
+    background-color: rgb(225, 225, 225);
+    color: black;
+}
+/* .student-form {
+    width: 30%;
+    height: 30%;
+    margin: 20px;
+    display: inline-flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+} */
+.label-field {
+    margin: 10px 0;
+    padding:10px;
+    letter-spacing: 1px;
+    font-size: 14px
+}
+.input-field {
+    width: 20%;
+    padding: 5px;
+    margin: 5px 8px;
+    font-size: 12px;
+    color: #F50057
+}

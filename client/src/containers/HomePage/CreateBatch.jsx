@@ -30,7 +30,7 @@ class CreateBatch extends PureComponent {
         <form className="batch-form">
             <div>
                 <label className="label-field">Batch Number : </label>
-                <input type="batchNb" name="batchNb" className="input-field"
+                <input type="text" name="batchNb" className="input-field"
                 id="batchNb" 
                 value={this.state.batchNb } 
                 onChange={ this.handleChange }/>
