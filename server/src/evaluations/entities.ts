@@ -1,6 +1,9 @@
 //src/evaluations/entities.ts
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm'
 import { BaseEntity } from 'typeorm/repository/BaseEntity'
+import { IsDate } from 'class-validator';
+
+type Color = 'green' | 'yellow' | 'red'
 
 @Entity()
 export class Evaluations extends BaseEntity {
@@ -8,21 +11,25 @@ export class Evaluations extends BaseEntity {
     @PrimaryGeneratedColumn()
     id?: number
 
-    @Column('int', {nullable: true})
+    @Column('int', { nullable: false })
     studentId: number
 
-    @Column('text', {nullable: false})
-    lastColor: string
+    @Column('int', { nullable: false })
+    batchId: number
 
-    @Column('date', {nullable: false})
+    @Column('text', {nullable: true})
+    color: Color
+
+    @IsDate()
+    @Column('date', {nullable: true})
     date: string
 
-    @Column('text', {nullable: false})
-    remarks: string
+    @Column('text', {nullable: true})
+    remarks?: string
 
-    // @Column('json', {nullable: false})
-    // colorList: string
+    // @ManyToOne(() => Students, s => s.evaluations, {onDelete: 'CASCADE'})
+    // student: Students
 
-    @Column('bool', {default: false, nullable: false})
+    @Column('bool', {default: false, nullable: true})
     questionAsked: boolean
 }

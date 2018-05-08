@@ -1,5 +1,6 @@
 //src/students/entities.ts
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm'
+import { Entity, PrimaryGeneratedColumn, Column} from 'typeorm'
+import {IsString, IsUrl} from "class-validator"
 import { BaseEntity } from 'typeorm/repository/BaseEntity'
 
 @Entity()
@@ -8,15 +9,14 @@ export class Students extends BaseEntity {
     @PrimaryGeneratedColumn()
     id?: number
 
-    @Column('int', {nullable: true})
-    batchNumber: number
+    @IsString()
+    @Column('text')
+    name: string
 
-    @Column('text', {nullable: true})
-    firstName: string
-
-    @Column('text', {nullable: true})
-    lastName: string
-
-    @Column('text', {nullable: true})
+    @IsUrl()
+    @Column('text')
     picture: string
+
+    @Column('int')
+    batchId: number
 }

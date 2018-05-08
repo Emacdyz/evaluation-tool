@@ -1,17 +1,17 @@
 //src/batches/controller.ts
-import { JsonController, Get, HttpCode, Param, NotFoundError, Post, Body } from 'routing-controllers'
+import { Authorized, JsonController, Get, HttpCode, Param, NotFoundError, Post, Body } from 'routing-controllers'
 import {Batches} from './entities'
 
 @JsonController()
 export default class BatchController {
 
-    //add  @Authorized()
+    @Authorized()
     @Get('/batches')
     getBatches() {
         return Batches.find()
     }
 
-    //add  @Authorized()
+    @Authorized()
     @Get('/batches/:id')
     async getBatchById(
         @Param('id') id: number
@@ -22,7 +22,7 @@ export default class BatchController {
         if (batchById) return batchById    
     }
 
-    //add  @Authorized()
+    @Authorized()
     @Post('/batches')
     @HttpCode(201)
     createBatch(
