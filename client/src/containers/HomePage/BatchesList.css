@@ -1,0 +1,22 @@
+.outer-paper {
+    width: 90%;
+    padding-bottom: 20px;
+    margin: 100px auto;
+}
+.outer-paper .add-batch {
+    background-color: #FF5252;
+    letter-spacing: 1.2px;
+    margin: 20px
+}
+.outer-paper .add-batch:hover {
+    background-color: rgb(225, 225, 225);
+    color: black;
+}
+.batch-card {
+    width: 30%;
+    height: 30%;
+    margin: 20px;
+    display: inline-flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
