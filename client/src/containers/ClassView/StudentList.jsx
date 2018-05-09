@@ -41,7 +41,7 @@ class StudentList extends PureComponent {
                         <Button
                         size="small"
                         variant="raised"
-                        onClick={() => history.push(`${student.batchId}/student/${student.name}`)}
+                        onClick={() => history.push(`${student.batchId}/student/${student.id}`)}
                         > EVALUATE 
                         </Button> 
         
@@ -97,11 +97,9 @@ class StudentList extends PureComponent {
     }
 }
 
-const mapStateToProps = state => {
-    return {
-        students: state.fetchStudents === null ?
-        null : Object.values(state.fetchStudents)
-    }     
-}
+const mapStateToProps = state => ({
+    students: state.fetchStudents === null ?
+    null : Object.values(state.fetchStudents)    
+})
 
 export default connect(mapStateToProps, {getStudents, deleteStudent})(StudentList)

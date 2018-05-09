@@ -4,7 +4,8 @@ import LoginPage from './components/login/LoginPage'
 import SignupPage from './components/signup/SignupPage'
 import LogoutPage from './components/logout/LogoutPage'
 import BatchesList from './containers/HomePage/BatchesList'
-import StudentList from './containers/ClassView/StudentList';
+import StudentList from './containers/ClassView/StudentList'
+import StudentPage from './containers/StudentView/StudentPage'
 
 //Styling
 import './App.css'
@@ -24,7 +25,7 @@ class App extends PureComponent {
             <Route exact path="/signup" component={SignupPage} />
             <Route exact path="/batches" component={BatchesList} />
             <Route exact path="/batches/:id" component={StudentList} />
-            {/*<Route exact path="/batches/:id/:name" component={StudentView} /> */}
+            <Route exact path="/batches/:id/student/:id" component={StudentPage} />
             <Route exact path="/" render={ () => <Redirect to="/login" /> } />
             
           </main>

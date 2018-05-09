@@ -6,7 +6,8 @@ import signup from './signup'
 import fetchBatches from './fetchBatches'
 import addBatch  from './addBatch'
 import fetchStudents from './fetchStudents'
-import student from './student'
+import addStudent from './addStudent'
+import studentPage from './studentPage'
 
 export default {
   users,
@@ -16,5 +17,6 @@ export default {
   fetchBatches, 
   addBatch,
   fetchStudents, 
-  student
+  addStudent,
+  studentPage,
 }

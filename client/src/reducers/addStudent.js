@@ -7,7 +7,6 @@ export default (state = {}, {type, payload}) => {
         case ADD_NEW_STUDENT:
             return payload
 
-
         default: 
         return state
     }
