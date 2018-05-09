@@ -4,3 +4,31 @@
     margin: 100px auto;
     padding: 20px
 }
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+.header img {
+    width: 200px;
+    height: 200px
+}
+.header-content {
+    margin-left:80px;
+    margin-top: 40px
+}
+.evaluation-form {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px
+}
+.input {
+    width: 60%;
+    height: 150px;
+    text-align: start
+}
+.bottom-navigation {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px
+}
