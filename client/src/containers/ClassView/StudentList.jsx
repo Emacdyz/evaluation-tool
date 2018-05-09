@@ -7,10 +7,10 @@ import CreateStudentCard from './AddStudent'
 //Styling
 import Paper from 'material-ui/Paper'
 import Card, {CardActions, CardContent} from 'material-ui/Card'
+import { Typography } from 'material-ui'
 import Button from 'material-ui/Button'
 import Avatar from 'material-ui/Avatar'
 import './ClassView.css'
-import { Typography } from 'material-ui';
 
 class StudentList extends PureComponent {
 
