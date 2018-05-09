@@ -6,7 +6,7 @@ import CreateStudentCard from './AddStudent'
 
 //Styling
 import Paper from 'material-ui/Paper'
-import Card, {CardActions, CardHeader, CardContent} from 'material-ui/Card'
+import Card, {CardActions, CardContent} from 'material-ui/Card'
 import Button from 'material-ui/Button'
 import Avatar from 'material-ui/Avatar'
 import './ClassView.css'
@@ -22,7 +22,7 @@ class StudentList extends PureComponent {
 
     renderStudentCard = (student) => {
         const {history} = this.props
-        
+
             return (
                 <Card key={student.id} className="student-card">
                     <CardContent>
@@ -52,11 +52,11 @@ class StudentList extends PureComponent {
     render () {
         const batchNb = (window.location.href).split('/').pop()
         const {history, students} = this.props
-        console.log(students, this.props, students instanceof Array)
 
-            if (students === null) return null
-            return (
-                <Paper className="outer-paper">
+        if (students === null) return null
+
+        return (
+            <Paper className="outer-paper">
                 <div className="topnav">
                     <Button
                     size="small"
@@ -88,12 +88,10 @@ class StudentList extends PureComponent {
 }
 
 const mapStateToProps = state => {
-    console.log('map state to props')
     return {
         students: state.fetchStudents === null ?
         null : Object.values(state.fetchStudents)
-    }  
-      
+    }     
 }
 
 export default connect(mapStateToProps, {getStudents})(StudentList)
