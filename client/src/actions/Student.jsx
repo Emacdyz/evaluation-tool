@@ -55,7 +55,7 @@ export const getStudentById = (studentId) => (dispatch, getState) => {
       .set('Authorization', `Bearer ${jwt}`)
       .then(response => dispatch(fetchOneStudent(response.body)))
       .catch(err => alert(err))
-  }
+}
 
 export const addStudent = (student) => (dispatch, getState) => {
     console.log(student)
