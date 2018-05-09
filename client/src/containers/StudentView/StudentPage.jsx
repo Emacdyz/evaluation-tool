@@ -18,13 +18,13 @@ class StudentPage extends PureComponent {
         this.props.getStudentById(studentId)
     }
 
-    // handleChange = (e) => {
-    //     const {name, value} = e.target
+    handleRadio = (e) => {
+        const {name, value} = e.target
     
-    //     this.setState({
-    //       [name]: value
-    //     })
-    // }
+        this.setState({
+          [name]: value
+        })
+    }
 
     render () {
         const {history, student} = this.props
@@ -35,20 +35,19 @@ class StudentPage extends PureComponent {
                 <div className="left-card">
                     <img src={student.picture} alt="avatar" className="avatar"/>
 
-                    <br/>
-                    <RadioGroup name="color">
-                    <FormControlLabel value={'GREEN'} control={<Radio className="Radio" />} label='GREEN' name="color"/> 
-                    <FormControlLabel value={'YELLOW'} control={<Radio className="Radio" />} label='YELLOW' name="color"/> 
-                    <FormControlLabel value={'RED'} control={<Radio className="Radio" />} label='RED' name="color"/> 
-                    </RadioGroup>
-                </div>
+                <form>
+                <input type="radio" value="GREEN" name="color" /><span>GREEN</span><br/>
+                <input type="radio" value="YELLOW" name="color"/><span>YELLOW</span><br/>
+                <input type="radio" value="RED" name="color" /><span>RED</span>    
+                </form>
+            </div>
 
-                <div className="right-card">
-                    <div className="header-content">
-                    <h2> {student.name} </h2>
-                    <p><em>Batch #{student.batchId}</em></p>
-                    </div>
-                    <input type="text" className="input"/>
+            <div className="right-card">
+                <div className="header-content">
+                <h2> {student.name} </h2>
+                <p><em>Batch #{student.batchId}</em></p>
+                </div>
+                <input type="text" className="input"/>
                 </div>
             </div>
 
