@@ -17,14 +17,15 @@
     background-color: rgb(225, 225, 225);
     color: black;
 }
-/* .student-form {
+.student-card {
     width: 30%;
     height: 30%;
     margin: 20px;
     display: inline-flex;
     flex-wrap: wrap;
     flex-direction: row;
-} */
+    align-items: center
+}
 .label-field {
     margin: 10px 0;
     padding:10px;

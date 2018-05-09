@@ -8,34 +8,33 @@ import CreateStudentCard from './AddStudent'
 import Paper from 'material-ui/Paper'
 import Card, {CardActions, CardHeader, CardContent} from 'material-ui/Card'
 import Button from 'material-ui/Button'
+import Avatar from 'material-ui/Avatar'
 import './ClassView.css'
+import { Typography } from 'material-ui';
 
 class StudentList extends PureComponent {
 
     componentWillMount() {
         if (this.props.students === null) 
         this.props.getStudents()
-        console.log(this.props.students)
     }
+    
 
     renderStudentCard = (student) => {
         const {history} = this.props
-        console.log('hallo', student)
+        
             return (
                 <Card key={student.id} className="student-card">
                     <CardContent>
-                        <CardHeader
-                        title={student.name}
-                        subtitle="GREEN"
-                        avatar={student.picture}
-                        />
+                        <Typography>{student.name}</Typography>
+                        <Avatar src={student.picture} />
                     </CardContent>
                         
                     <CardActions>
                         <Button
                         size="small"
                         variant="raised"
-                        onClick={() => history.push(`student/${student.id}`)}
+                        onClick={() => history.push(`${student.batchId}/student/${student.name}`)}
                         > EVALUATE 
                         </Button> 
         
