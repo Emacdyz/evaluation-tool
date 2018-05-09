@@ -10,7 +10,6 @@ export default class StudentController {
     getStudents() {
         return Students.find()
     }
-    //by batchNb ??
 
     @Authorized()
     @Get('/students/:id([0-9]+)')
@@ -27,12 +26,10 @@ export default class StudentController {
     @Authorized()
     @Post('/students')
     @HttpCode(201)
-    async addStudent(
+    addStudent(
         @Body() body: Students
     ) {
-        const student = await Students.create(body).save()
-
-        return student
+        return Students.create(body).save()
     }
 
     @Authorized()

@@ -5,11 +5,12 @@ import UserController from './users/controller'
 import LoginController from './logins/controller'
 import BatchController from './batches/controller'
 import StudentController from './students/controller'
-// add allof my other controllers
+import EvaluationController from './evaluations/controller'
 import { verify } from './jwt'
 import User from './users/entity'
 import * as Koa from 'koa'
 import {Server} from 'http'
+
 
 const app = new Koa()
 const server = new Server(app.callback())
@@ -22,8 +23,8 @@ useKoaServer(app, {
     UserController,
     LoginController,
     BatchController, 
-    StudentController
-    // add all of my other controllers
+    StudentController,
+    EvaluationController
   ],
   authorizationChecker: (action: Action) => {
     const header: string = action.request.headers.authorization
