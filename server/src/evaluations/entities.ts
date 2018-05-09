@@ -1,9 +1,7 @@
 //src/evaluations/entities.ts
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm'
 import { BaseEntity } from 'typeorm/repository/BaseEntity'
-import { IsDate, IsString } from 'class-validator';
-
-type Color = 'GREEN' | 'YELLOW' | 'RED'
+import { IsDate, IsString } from 'class-validator'
 
 @Entity()
 export class Evaluations extends BaseEntity {
@@ -19,13 +17,12 @@ export class Evaluations extends BaseEntity {
 
     @IsString()
     @Column('text', {nullable: true})
-    color: Color
+    color: string
 
     @IsDate()
     @Column('date', {nullable: true})
     date: string
 
-    @IsString()
     @Column('text', {nullable: true})
     remarks: string
 

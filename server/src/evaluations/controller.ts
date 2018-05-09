@@ -5,25 +5,25 @@ import {Evaluations} from './entities'
 @JsonController()
 export default class EvaluationController {
     
-    // @Authorized()
+    @Authorized()
     @Get('/evaluation')
     getEvaluation() {
         return Evaluations.find()
     }
 
-    // @Authorized()
-    @Get('/evaluation')
-    async getEvaluationByStudentId(
-        @Param('studentId') studentId: number
+    @Authorized()
+    @Get('/evaluation/:id')
+    async getEvaluationById(
+        @Param('id') id: number
     ) {
-        const studentEval = await Evaluations.findOneById(studentId)
+        const evaluation = await Evaluations.findOneById(id)
 
-        if(!studentEval) throw new NotFoundError('No evaluation found for that student.')
+        if(!evaluation) throw new NotFoundError('No evaluation found')
 
-        return studentEval
+        return evaluation
     }
 
-    // @Authorized()
+    @Authorized()
     @Post('/evaluation')
     @HttpCode(201)
     createEvaluation(
@@ -36,7 +36,8 @@ export default class EvaluationController {
 
         return Evaluations.create(body).save()
     }
-    // @Authorized()
+
+    @Authorized()
     @Patch('/evaluation/:id([0-9]+)')
     async updateEvaluation (
         @Body() update: Partial <Evaluations>,
