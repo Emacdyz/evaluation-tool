@@ -2,30 +2,38 @@
     width: 90%;
     padding-bottom: 20px;
     margin: 100px auto;
-    padding: 20px
+    padding: 20px; 
 }
-.header {
+.card {
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
+    
 }
-.header img {
-    width: 200px;
-    height: 200px
+.left-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+.left-card img {
+    width: 180px;
+    height: 180px
+}
+.right-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    margin-right: 10px
 }
 .header-content {
     margin-left:80px;
-    margin-top: 40px
-}
-.evaluation-form {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 30px
+    margin-top: 20px
 }
 .input {
-    width: 60%;
+    width: 180%;
     height: 150px;
-    text-align: start
+    margin-left: 80px 
 }
 .bottom-navigation {
     display: flex;

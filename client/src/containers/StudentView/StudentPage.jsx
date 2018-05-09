@@ -28,26 +28,28 @@ class StudentPage extends PureComponent {
 
     render () {
         const {history, student} = this.props
+        
         return (
             <Paper className="outer-paper">
-            <div className="header">
-                <img src={student.picture} alt="avatar" className="avatar"/>
-                <div className="header-content">
-                <h2> {student.name} </h2>
-                <p><em>Batch #{student.batchId}</em></p>
+            <div className="card">
+                <div className="left-card">
+                    <img src={student.picture} alt="avatar" className="avatar"/>
+
+                    <br/>
+                    <RadioGroup name="color">
+                    <FormControlLabel value={'GREEN'} control={<Radio className="Radio" />} label='GREEN' name="color"/> 
+                    <FormControlLabel value={'YELLOW'} control={<Radio className="Radio" />} label='YELLOW' name="color"/> 
+                    <FormControlLabel value={'RED'} control={<Radio className="Radio" />} label='RED' name="color"/> 
+                    </RadioGroup>
                 </div>
-            </div>
 
-            <div className="evaluation-form">
-
-            <RadioGroup name="color">
-                <FormControlLabel value={'GREEN'} control={<Radio className="Radio" />} label='GREEN' name="color"/> 
-                <FormControlLabel value={'YELLOW'} control={<Radio className="Radio" />} label='YELLOW' name="color"/> 
-                <FormControlLabel value={'RED'} control={<Radio className="Radio" />} label='RED' name="color"/> 
-            </RadioGroup>
-            
-            <input type="text" className="input"/>
-
+                <div className="right-card">
+                    <div className="header-content">
+                    <h2> {student.name} </h2>
+                    <p><em>Batch #{student.batchId}</em></p>
+                    </div>
+                    <input type="text" className="input"/>
+                </div>
             </div>
 
             <div className="bottom-navigation">
@@ -60,7 +62,7 @@ class StudentPage extends PureComponent {
                 <Button
                 size="small"
                 variant="raised"
-                onClick={() => history.push(`/batches`)}
+                onClick={() => history.push(`/batches/${student.batchId}`)}
                 > SAVE 
                 </Button>
 
