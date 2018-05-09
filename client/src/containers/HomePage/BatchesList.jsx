@@ -47,7 +47,6 @@ class BatchesList extends PureComponent {
 
     render() {
         const {batches, users, authenticated} = this.props
-        console.log(batches)
 
         if (!authenticated) return (
 			<Redirect to="/login" />

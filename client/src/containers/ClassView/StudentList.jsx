@@ -1,7 +1,7 @@
 //src/containers/ClassView/StudentList.jsx
 import React, {PureComponent} from 'react'
 import {connect} from 'react-redux'
-import { getStudents } from '../../actions/student'
+import { getStudents, deleteStudent } from '../../actions/student'
 import CreateStudentCard from './AddStudent'
 
 //Styling
@@ -18,16 +18,23 @@ class StudentList extends PureComponent {
         if (this.props.students === null) 
         this.props.getStudents()
     }
-    
 
+    handleDelete = (event ) => {
+        this.props.deleteStudent(event.target.value)
+        console.log(event.target.value)
+    }
+    
     renderStudentCard = (student) => {
         const {history} = this.props
-
+        const batchNb =  Number((window.location.href).split('/').pop())
+        const studentId = String(student.id)
+        
+        if ( student.batchId === batchNb) {
             return (
                 <Card key={student.id} className="student-card">
-                    <CardContent>
-                        <Typography>{student.name}</Typography>
+                    <CardContent className="card-content">
                         <Avatar src={student.picture} />
+                        <Typography style= { {fontSize : 18, paddingLeft: 25 }}>{student.name}</Typography>
                     </CardContent>
                         
                     <CardActions>
@@ -41,12 +48,15 @@ class StudentList extends PureComponent {
                         <Button
                         size="small"
                         variant="raised"
+                        value={studentId}
+                        onClick={this.handleDelete.bind(this)}
                         > DELETE 
                         </Button> 
                         
                     </CardActions>
-                </Card>
+               </Card>
             )
+        }   
     }
 
     render () {
@@ -94,4 +104,4 @@ const mapStateToProps = state => {
     }     
 }
 
-export default connect(mapStateToProps, {getStudents})(StudentList)
+export default connect(mapStateToProps, {getStudents, deleteStudent})(StudentList)

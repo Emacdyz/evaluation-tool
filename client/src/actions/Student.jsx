@@ -6,6 +6,7 @@ import {isExpired} from '../jwt'
 
 export const GET_STUDENTS = 'GET_STUDENTS'
 export const ADD_NEW_STUDENT = 'ADD_NEW_STUDENT'
+export const DELETE_STUDENT = 'DELETE_STUDENT'
 
 const fetchStudents = students => ({
     type: GET_STUDENTS,
@@ -14,6 +15,11 @@ const fetchStudents = students => ({
   
 const postStudent = student => ({
     type: ADD_NEW_STUDENT,
+    payload: student
+})
+
+const removeStudent = student => ({
+    type: DELETE_STUDENT,
     payload: student
 })
 
@@ -43,5 +49,12 @@ export const addStudent = (student) => (dispatch, getState) => {
       .set('Authorization', `Bearer ${jwt}`)
       .send(student)
       .then(result => dispatch(postStudent(student)))
+      .catch(err => console.error(err))
+}
+
+export const deleteStudent = (studentId) => (dispatch) => {
+    request
+      .delete(`${baseUrl}/students/${studentId}`) 
+      .then(result => dispatch(removeStudent(studentId)))
       .catch(err => console.error(err))
 }
