@@ -2,7 +2,7 @@
 import React, {PureComponent} from 'react'
 import {connect} from 'react-redux'
 import {getStudentById} from '../../actions/student'
-import {addEvaluation, editEvaluation, getEvaluations} from '../../actions/evaluation'
+import { editEvaluation} from '../../actions/evaluation'
 
 //Styling
 import Paper from 'material-ui/Paper'
@@ -13,23 +13,24 @@ import { Typography } from 'material-ui';
 class StudentPage extends PureComponent {
     
     state = {
-        studentId: Number((window.location.href).split('/').pop()),
-        remarks: '',
-        questionAsked: false,
+        // studentId: Number((window.location.href).split('/').pop()),
+        // remarks: '',
+        // questionAsked: false,
         date: new Date()
     }
     
     componentWillMount() {
         const studentId = Number((window.location.href).split('/').pop()) 
         this.props.getStudentById(studentId)
-        this.props.getEvaluations()
+        // this.props.getEvaluations()
     }
 
     handleSave = () => {
         const {history, student} = this.props
 
-        this.props.addEvaluation(this.state)
-        history.push(`/batches/${student.batchId}`) 
+        this.props.editEvaluation(this.state, student.id)
+        console.log(this.state)
+        // history.push(`/batches/${student.batchId}`) 
     }
 
     handleEdit = () => {
@@ -49,19 +50,18 @@ class StudentPage extends PureComponent {
     renderEvaluation = (evaluation) => {
         const {student} = this.props
 
-        if (evaluation.studentId === student.id) {
+        if (student.color !== null && student.date !== null) {
             return (
-                <Typography className="evaluation"> 
-                {` ${evaluation.color} (${(evaluation.date).slice(0, 10)})`} 
-                </Typography>
+                <Typography className="evaluation"> Last evaluation: 
+                {` ${student.color} (${(student.date).slice(0, 10)})`} 
+                 </Typography>
             )
         } 
     }
 
     render () {
-        const {student, evaluations} = this.props
+        const {student} = this.props
 
-        if (evaluations === null) return null
         
         return (
             <Paper className="outer-paper">
@@ -85,7 +85,7 @@ class StudentPage extends PureComponent {
                         <h2> {student.name} </h2>
                         <p><em>Batch #{student.batchId}</em></p>
 
-                        {evaluations.map(evaluation => this.renderEvaluation(evaluation))}
+                        {/* {evaluations.map(evaluation => this.renderEvaluation(evaluation))} */}
                     </div>
 
                     <input type="text" name="remarks" className="input" id="remarks"
@@ -123,8 +123,8 @@ class StudentPage extends PureComponent {
 
 const mapStateToProps = state => ({
     student: state.studentPage, 
-    evaluations: state.fetchEvaluations === null ?
-    null : Object.values(state.fetchEvaluations).sort((a, b) => b.date - a.date)   
+    // evaluations: state.fetchEvaluations === null ?
+    // null : Object.values(state.fetchEvaluations).sort((a, b) => b.date - a.date)   
 })
 
-export default connect(mapStateToProps, {getStudentById, addEvaluation, editEvaluation, getEvaluations} )(StudentPage)
+export default connect(mapStateToProps, {getStudentById, editEvaluation} )(StudentPage)

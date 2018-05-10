@@ -52,6 +52,7 @@ export const addEvaluation = (evaluation) => (dispatch, getState) => {
 }
 
 export const editEvaluation = (patch, studentId) => (dispatch, getState) => {
+    console.log(patch)
     const state = getState()
     const jwt = state.currentUser.jwt
   
