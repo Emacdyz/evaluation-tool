@@ -9,6 +9,7 @@ import fetchStudents from './fetchStudents'
 import addStudent from './addStudent'
 import studentPage from './studentPage'
 import addEvaluation from './addEvaluation'
+import fetchEvaluations from './fetchEvaluations'
 
 export default {
   users,
@@ -20,5 +21,6 @@ export default {
   fetchStudents, 
   addStudent,
   studentPage,
+  fetchEvaluations,
   addEvaluation
 }

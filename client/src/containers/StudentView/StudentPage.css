@@ -35,7 +35,9 @@ span {
 }
 .header-content {
     margin-left:80px;
-    margin-top: 20px
+}
+.he.evaluation .evaluation {
+    margin-bottom: 10px
 }
 .input {
     width: 180%;

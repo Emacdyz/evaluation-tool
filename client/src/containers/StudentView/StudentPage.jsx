@@ -2,18 +2,18 @@
 import React, {PureComponent} from 'react'
 import {connect} from 'react-redux'
 import {getStudentById} from '../../actions/student'
-import {addEvaluation} from '../../actions/evaluation'
+import {addEvaluation, editEvaluation, getEvaluations} from '../../actions/evaluation'
 
 //Styling
 import Paper from 'material-ui/Paper'
 import Button from 'material-ui/Button'
 import './StudentPage.css'
+import { Typography } from 'material-ui';
 
 class StudentPage extends PureComponent {
     
     state = {
-        studentId: 1,
-        batchId: 1,
+        studentId: Number((window.location.href).split('/').pop()),
         remarks: '',
         questionAsked: false,
         date: new Date()
@@ -22,6 +22,7 @@ class StudentPage extends PureComponent {
     componentWillMount() {
         const studentId = Number((window.location.href).split('/').pop()) 
         this.props.getStudentById(studentId)
+        this.props.getEvaluations()
     }
 
     handleSave = () => {
@@ -29,16 +30,13 @@ class StudentPage extends PureComponent {
 
         this.props.addEvaluation(this.state)
         history.push(`/batches/${student.batchId}`) 
-        console.log(this.state)
     }
 
-    // handleSaveNext = () => {
-    //     const {history, student} = this.props
-
-    //     this.props.addEvaluation(this.state)
-    //     history.push(`/batches/${student.batchId}/${student.id}`) 
-    //     console.log(this.state)
-    // }
+    handleEdit = () => {
+        const {student} = this.props
+        this.props.editEvaluation(this.state, student.id)
+        console.log(this.state)
+    }
 
     handleChange = (e) => {
         const {name, value} = e.target
@@ -48,8 +46,22 @@ class StudentPage extends PureComponent {
         })
     }
 
-    render () {
+    renderEvaluation = (evaluation) => {
         const {student} = this.props
+
+        if (evaluation.studentId === student.id) {
+            return (
+                <Typography className="evaluation"> 
+                {` ${evaluation.color} (${(evaluation.date).slice(0, 10)})`} 
+                </Typography>
+            )
+        } 
+    }
+
+    render () {
+        const {student, evaluations} = this.props
+
+        if (evaluations === null) return null
         
         return (
             <Paper className="outer-paper">
@@ -72,6 +84,8 @@ class StudentPage extends PureComponent {
                     <div className="header-content">
                         <h2> {student.name} </h2>
                         <p><em>Batch #{student.batchId}</em></p>
+
+                        {evaluations.map(evaluation => this.renderEvaluation(evaluation))}
                     </div>
 
                     <input type="text" name="remarks" className="input" id="remarks"
@@ -84,7 +98,8 @@ class StudentPage extends PureComponent {
                 <Button
                 size="small"
                 variant="raised"
-                > EDIT EVALUATION 
+                onClick={this.handleEdit}
+                > EDIT & SAVE
                 </Button>
 
                 <Button
@@ -107,7 +122,9 @@ class StudentPage extends PureComponent {
 }
 
 const mapStateToProps = state => ({
-    student: state.studentPage   
+    student: state.studentPage, 
+    evaluations: state.fetchEvaluations === null ?
+    null : Object.values(state.fetchEvaluations).sort((a, b) => b.date - a.date)   
 })
 
-export default connect(mapStateToProps, {getStudentById, addEvaluation} )(StudentPage)
+export default connect(mapStateToProps, {getStudentById, addEvaluation, editEvaluation, getEvaluations} )(StudentPage)

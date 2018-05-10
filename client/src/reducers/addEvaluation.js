@@ -1,13 +1,21 @@
 //src/reducers/addEvaluation.js
-import {ADD_EVALUATION} from '../actions/evaluation'
+import {ADD_EVALUATION, EDIT_EVALUATION} from '../actions/evaluation'
 
-export default (state = {}, {type, payload}) => {
+export default (state = [], {type, payload}) => {
     switch (type) {
 
         case ADD_EVALUATION:
-              return payload
+            return payload
+
+        case EDIT_EVALUATION:
+            return state.map(evaluation => {
+                if (evaluation.studentId === payload.studentId) {
+                    return payload 
+                } else return evaluation 
+            })
 
         default: 
         return state
     }
 }
+
