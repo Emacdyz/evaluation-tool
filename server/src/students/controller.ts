@@ -1,5 +1,5 @@
 //src/students/controller.ts
-import { JsonController, Get, HttpCode, Param, NotFoundError, Post, Body, Delete, Patch, Authorized } from 'routing-controllers'
+import { JsonController, Get, HttpCode, Param, NotFoundError, Post, Body, Delete, Patch, Authorized, BadRequestError } from 'routing-controllers'
 import {Students} from './entities'
 
 @JsonController()
@@ -42,11 +42,21 @@ export default class StudentController {
         
         if(!student) throw new NotFoundError('This student is not found.')
 
+        const newDate = new Date(student.date)
+        
+        if(newDate > new Date()) throw new BadRequestError("Evaluation can't be in the future.")
+
         if(update.name) student.name = update.name
         
         if(update.picture) student.picture = update.picture
 
         if(update.batchId) student.batchId = update.batchId
+
+        if(update.color) student.color = update.color
+
+        if(update.date) student.date = update.date
+
+        if(update.remarks) student.remarks = update.remarks
 
         await student.save()
 

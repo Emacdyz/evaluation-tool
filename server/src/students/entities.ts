@@ -19,4 +19,13 @@ export class Students extends BaseEntity {
 
     @Column('int')
     batchId: number
+
+    @Column('text', {nullable: true})
+    color: string
+
+    @Column('text', {nullable: true})
+    date: string
+
+    @Column('text', {nullable: true})
+    remarks: string
 }
