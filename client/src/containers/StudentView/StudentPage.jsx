@@ -6,9 +6,6 @@ import {addEvaluation} from '../../actions/evaluation'
 
 //Styling
 import Paper from 'material-ui/Paper'
-// import Radio, { RadioGroup } from 'material-ui/Radio'
-// import { FormControlLabel} from 'material-ui/Form';
-// import { Typography } from 'material-ui'
 import Button from 'material-ui/Button'
 import './StudentPage.css'
 
@@ -18,12 +15,12 @@ class StudentPage extends PureComponent {
         studentId: 1,
         batchId: 1,
         remarks: '',
-        questionAsked: false
-        // date: new Date()
+        questionAsked: false,
+        date: new Date()
     }
     
     componentWillMount() {
-        const studentId = Number((window.location.href).split('/').pop()) //or get it from state
+        const studentId = Number((window.location.href).split('/').pop()) 
         this.props.getStudentById(studentId)
     }
 
@@ -65,9 +62,9 @@ class StudentPage extends PureComponent {
                     onChange={ this.handleChange }/>
 
                     <form value={this.state.color} onChange={this.handleChange} id="color">
-                    <input type="radio" value={"GREEN"} name="color"/><span>GREEN</span><br/>
-                    <input type="radio" value={"YELLOW"} name="color"/><span>YELLOW</span><br/>
-                    <input type="radio" value={"RED"} name="color" /><span>RED</span>    
+                    <input type="radio" value={"GREEN"} name="color" className="radio"/><span>GREEN</span><br/>
+                    <input type="radio" value={"YELLOW"} name="color" className="radio"/><span>YELLOW</span><br/>
+                    <input type="radio" value={"RED"} name="color" className="radio" /><span>RED</span>    
                     </form>
                 </div>
 
