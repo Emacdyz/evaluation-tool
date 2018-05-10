@@ -10,7 +10,10 @@ import './ClassView.css'
 class CreateStudentCard extends PureComponent {
 
     state = {
-        batchId: Number((window.location.href).split('/').pop())
+        batchId: Number((window.location.href).split('/').pop()),
+        color: '',
+        date: '',
+        remarks: ''
     }
 
 	handleSubmit = () => {

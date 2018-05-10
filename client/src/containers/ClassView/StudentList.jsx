@@ -2,7 +2,6 @@
 import React, {PureComponent} from 'react'
 import {connect} from 'react-redux'
 import { getStudents, deleteStudent } from '../../actions/student'
-import {getEvaluations} from '../../actions/evaluation'
 import CreateStudentCard from './AddStudent'
 
 //Styling
@@ -17,7 +16,6 @@ class StudentList extends PureComponent {
 
     componentWillMount() {
         if (this.props.students === null) this.props.getStudents()
-        if (this.props.evaluations === null) this.props.getEvaluations()
     }
 
     handleDelete = (event ) => {
@@ -99,8 +97,7 @@ class StudentList extends PureComponent {
 }
 
 const mapStateToProps = state => ({
-    students: state.fetchStudents === null ? null : Object.values(state.fetchStudents),
-    evaluations: state.fetchEvaluations  === null ? null : Object.values(state.fetchEvaluations).sort((a, b) => b.date - a.date) 
+    students: state.fetchStudents === null ? null : Object.values(state.fetchStudents).sort((a, b) => b.date - a.date)
 })
 
-export default connect(mapStateToProps, {getStudents, deleteStudent, getEvaluations})(StudentList)
+export default connect(mapStateToProps, {getStudents, deleteStudent})(StudentList)
