@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import { getStudents, deleteStudent } from '../../actions/student'
 import {getEvaluations} from '../../actions/evaluation'
 import CreateStudentCard from './AddStudent'
+import AskQuestion from './AskQuestion'
 
 //Styling
 import Paper from 'material-ui/Paper'
@@ -26,16 +27,20 @@ class StudentList extends PureComponent {
     }
     
     renderStudentCard = (student) => {
-        const {history} = this.props
+        const {history, evaluations} = this.props
         const batchNb =  Number((window.location.href).split('/').pop())
-        const studentId = String(student.id)
+        // const studentId = String(student.id)
+
+        // const evaluation = evaluations.find(e => e.studentId === student.id);
+        // console.log(evaluation.color, student.name);
         
         if ( student.batchId === batchNb) {
             return (
                 <Card key={student.id} className="student-card">
                     <CardContent className="card-content">
                         <Avatar src={student.picture} />
-                        <Typography style= { {fontSize : 18, paddingLeft: 25 }}>{student.name}</Typography>
+                        <Typography style= { {fontSize : 18, paddingLeft: 25 }}>{student.name}</Typography><br/>
+                        {/* <Typography>{evaluation.color}</Typography> */}
                     </CardContent>
                         
                     <CardActions>
@@ -49,12 +54,14 @@ class StudentList extends PureComponent {
                         <Button
                         size="small"
                         variant="raised"
-                        value={studentId}
-                        onClick={this.handleDelete.bind(this)}
+                        value={student.id}
+                        onClick={this.handleDelete}
                         > DELETE 
                         </Button> 
                         
                     </CardActions>
+                    {/* {evaluation !== undefined} */}
+                    
                </Card>
             )
         }   
@@ -77,12 +84,7 @@ class StudentList extends PureComponent {
                     > GO BACK 
                     </Button>
     
-                    <Button
-                    size="small"
-                    variant="raised"
-                    className='return-button'
-                    > ASK A QUESTION 
-                    </Button>
+                    <AskQuestion/>
                 </div>
     
                 <div>
