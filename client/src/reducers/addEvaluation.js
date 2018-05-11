@@ -9,10 +9,16 @@ export default (state = [], {type, payload}) => {
 
         case EDIT_EVALUATION:
             return state.map(evaluation => {
-                if (evaluation.studentId === payload.id) {
+                if (evaluation.studentId === payload.studentId) {
                     return payload 
                 } else return evaluation 
             })
+
+        // case EDIT_EVALUATION:
+        //     if (state.studentId === payload.id) {
+        //         return payload
+        //     } break;
+            
 
         default: 
         return state
