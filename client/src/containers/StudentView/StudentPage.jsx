@@ -35,7 +35,6 @@ class StudentPage extends PureComponent {
     handleEdit = () => {
         const {student} = this.props
         this.props.editEvaluation(this.state, student.id)
-        console.log(this.state)
     }
 
     handleChange = (e) => {

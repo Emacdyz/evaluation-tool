@@ -29,7 +29,6 @@ class StudentList extends PureComponent {
     renderStudentCard = (student) => {
         const {history, evaluations} = this.props
         const batchNb =  Number((window.location.href).split('/').pop())
-        // const studentId = String(student.id)
 
         // const evaluation = evaluations.find(e => e.studentId === student.id);
         // console.log(evaluation.color, student.name);

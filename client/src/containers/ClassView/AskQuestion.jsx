@@ -41,7 +41,7 @@ class AskQuestion extends PureComponent {
         
         let finalstudent = students.find(s => s.id === studentToTest.studentId)
 
-        alert(finalstudent.name)
+        alert(`You should ask a question to: ${finalstudent.name}`)
         
     }
 

@@ -9,7 +9,7 @@ export default (state = [], {type, payload}) => {
 
         case EDIT_EVALUATION:
             return state.map(evaluation => {
-                if (evaluation.studentId === payload.studentId) {
+                if (evaluation.studentId === payload.id) {
                     return payload 
                 } else return evaluation 
             })

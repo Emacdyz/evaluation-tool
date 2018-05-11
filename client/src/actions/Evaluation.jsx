@@ -56,7 +56,7 @@ export const editEvaluation = (patch, studentId) => (dispatch, getState) => {
     const jwt = state.currentUser.jwt
   
     request
-      .patch(`${baseUrl}/students/${studentId}`)
+      .patch(`${baseUrl}/evaluation/${studentId}`)
       .set('Authorization', `Bearer ${jwt}`)
       .send(patch)
       .then(response => dispatch(patchEvaluation(response.body)))

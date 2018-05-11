@@ -73,6 +73,7 @@ export const addStudent = (student) => (dispatch, getState) => {
 }
 
 export const deleteStudent = (studentId) => (dispatch) => {
+    console.log(studentId)
     request
       .delete(`${baseUrl}/students/${studentId}`) 
       .then(result => dispatch(removeStudent(studentId)))
