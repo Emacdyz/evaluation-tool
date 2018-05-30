@@ -1,16 +1,36 @@
-# Tic Tac Toe Server
+# Evaluation Tool Server
 
-This is a server for playing a multiplayer Tic Tac Toe game. 
+This is a server for a student evaluation tools. It is composed of 5 tables with the following endpoints: 
 
 It has these endpoints:
 
-* `POST /users`: sign up as new user
-* `POST /logins`: log in and receive a JWT
-* `POST /games`: create a new game
-* `POST /games/:id/players`: join an existing game
-* `PATCH /games/:id`: update an existing game
-* `GET /games`: list all games
+1 - Batches:
+
+* `GET /batches`: list all batches
+* `GET /batches/:id`: select batch by id
+* `POST /batches`: create new batch
+
+2 - Students:
+
+* `GET /students`: list all students
+* `GET /students/:id`: select student by id
+* `POST /students`: add new students
+* `PATCH /students/:id`: update an existing student
+* `DELETE /students/:id`: delete existing student
+
+3 - Evaluation:
+
+* `GET /evaluation`: list all evaluation
+* `GET /evaluation/:id`: select evaluation by id
+* `POST /evaluation`: create new evaluation
+* `PATCH /evaluation/:id`: update an existing evaluation
+
+4/5 - Users + Logins: 
+
 * `GET /users`: list all users
+* `GET /users/:id`: select user by id for log in 
+* `POST /users`: create new user for sign up
+
 
 ## Running
 
