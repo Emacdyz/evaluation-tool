@@ -8,6 +8,8 @@ The goal was to build an evaluation platform that could be used by Codaisseur's 
 
 There is also an algorythm that would fetch a student to ask a question to, students with the lowest scores would get questions more often.
 
+### 🔷 In Progress!
+
 ## Client
 
 It's build using `create-react-app`. You first need to `yarn` in order to get all the dependencies locally. To start the app `yarn start` can be used.
